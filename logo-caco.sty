@@ -1,0 +1,47 @@
+% logo do CACo -- Centro Acadêmico da Computação Unicamp
+% baseado em logo-unicamp.sty, disponibilizado por stolfi
+{
+  \def\release{2012-12-13}
+  \def\lastedit{2010-12-13 by alemedeiros}
+  \typeout{logo-caco.sty release {\release} last edit {\lastedit}}
+}
+\ProvidesPackage{logo-caco}
+\RequirePackage{graphicx}
+
+% Macros definidas neste pacote:
+%
+%   \LogoCACo
+%     Esta macro produz uma caixa quadrada de tamanho fixo contendo o logo do
+%     CACo. Utilize \scalebox{SCALE}{\LogoCACo} para redimensioná-lo.
+% PARAMETROS
+%     Estes parâmetros determinam a localização e o estilo da imagem do logo
+%     utilizada. Podem ser redefinidos com \renewcommand caso necessário.
+%
+    \newcommand{\LogoCACoSize}{60pt}
+%     Altura e largura da caixa do logo.
+%
+    \newcommand{\LogoCACoFile}{logo-caco.pdf}
+%     Nome (relativo ao diretório atual) do arquivo pdf contendo o logo do CACo.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Usuários não deveriam precisar editar abaixo deste ponto.
+
+\advance \endlinechar by -256 % Ignore line breaks in this file
+
+% Dimensões do logo.
+
+\newcommand{\LogoCACoWidth}{\LogoCACoSize}   % Largura
+\newcommand{\LogoCACoHeight}{\LogoCACoSize}  % Altura
+
+\newcommand{\LogoCACo}{
+  \vbox to \LogoCACoHeight{
+    \offinterlineskip
+    \hrule height 0pt width 0pt depth 0pt
+    \vss
+    \hbox{\includegraphics*[width=\LogoCACoWidth]{\LogoCACoFile}}
+    \vss
+    \hrule height 0pt width 0pt depth 0pt
+  }
+}
+
+\advance \endlinechar by 256 % Restore \endlinechar as before
