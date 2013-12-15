@@ -1,0 +1,88 @@
+% Modelo de ofício do CACo (Centro Acadêmico da Computação) da Unicamp
+% 2012-12-14 by alemedeiros
+
+% Autor: Alexandre Novais de Medeiros
+% Baseado no modelo de papel timbrado do Prof. Rodolfo Jardim de Azevedo
+% Transitivamente, baseado em ideias/modelos de:
+%  Flavio K. Miyazawa
+%  Jorge Stolfi
+%  Pedro J. de Rezende
+%  Tomasz Kowaltowski
+%
+% Para usar:
+%
+%   \usepackage{oficio-caco}
+%   \gestao{Gestão 1969/1970 -- ``Feira da Fruta''}
+%   \nome{Bátima}
+%   \cargo{Coordenador da Batcaverna}
+%
+%   \oficio{000/1969}
+%   \titulo{Este documento não prova nada}
+%
+%   \begin{document}
+%   % Texto do ofício
+%   \end{document}
+%
+% Vide exemplo de uso "exemplo-oficio.tex"
+%
+
+\ProvidesPackage{oficio-caco}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{url}
+\RequirePackage{logo-caco}
+\RequirePackage{logo-unicamp}
+
+\voffset -0.54cm
+\hoffset -0.54cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\marginparwidth 0cm
+
+\topmargin 0cm
+\headheight 2.2cm
+\headsep 0.5cm
+\textheight 19cm
+\footskip 2.2cm
+
+\textwidth 17.5cm
+
+\def\gestao#1{\gdef\@formgestao{#1}}
+\def\nome#1{\gdef\@formnome{#1}}
+\def\cargo#1{\gdef\@formcargo{#1}}
+\def\oficio#1{\gdef\@formoficio{#1}}
+\def\titulo#1{\gdef\@formtitulo{#1}}
+
+\newcommand\oficiocaco{
+    % Define cabeçalho e rodapé
+    \pagestyle{fancy}
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \lhead{\resizebox{!}{2cm}{\LogoUnicamp}}
+    \chead{\centerline{\Large\sc Centro Acadêmico da Computação}
+    \centerline{\small\sc \@formgestao}}
+    \rhead{\resizebox{!}{2cm}{\LogoCACo}}
+    \lfoot{\small Centro Acadêmico da Computação \\
+        Av. Albert Einstein, 1251 - Cidade Universitária \\
+        13083-852 - Campinas - SP - Brasil}
+    \cfoot{}
+    \rfoot{\small \url{caco@ic.unicamp.br} \\ \url{www.caco.ic.unicamp.br}}
+
+    % Começo do ofício
+    \hfill Campinas, \today
+    \vfill
+    {\bf Ofício CACo \@formoficio}\par
+    {\bf Ref.: \@formtitulo}
+    \vfill
+}
+
+\newcommand\assinatura{
+    \vfill
+    \centering
+    \rule{5cm}{0.1mm} \\ \@formnome \\ \@formcargo
+    \vfill
+}
+
+\AtBeginDocument{\oficiocaco}
+\AtEndDocument{\assinatura}
